@@ -11,22 +11,13 @@
 
     <packaging>jar</packaging>
     <artifactId>ScreeningSeatingArrangementSuggestionsAcceptanceTests</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
     <name>SeatingPlaceSuggestionsAcceptanceTests</name>
 
     <dependencies>
-
         <dependency>
             <groupId>org.octo</groupId>
             <artifactId>ExternalDependencies</artifactId>
         </dependency>
-
-        <dependency>
-            <groupId>org.octo</groupId>
-            <artifactId>ScreeningSeatingArrangementSuggestions</artifactId>
-        </dependency>
-
-
         <!-- TEST dependencies -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
@@ -34,11 +25,10 @@
             <version>5.12.2</version>
             <scope>test</scope>
         </dependency>
-
         <dependency>
             <groupId>org.assertj</groupId>
             <artifactId>assertj-core</artifactId>
-            <version>3.24.2</version>
+            <version>3.27.7</version>
             <scope>test</scope>
         </dependency>
 

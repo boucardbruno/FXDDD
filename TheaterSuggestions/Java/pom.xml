@@ -2,38 +2,31 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
     <groupId>org.octo</groupId>
     <artifactId>ScreeningSeatingArrangementSuggestionsParent</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
-
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <java.version>23</java.version>
+        <java.version>25</java.version>
     </properties>
-
     <modules>
         <module>ExternalDependencies</module>
         <module>ScreeningSeatingArrangementSuggestions</module>
         <module>ScreeningSeatingArrangementSuggestionsAcceptanceTests</module>
     </modules>
-
     <dependencyManagement>
         <dependencies>
-
             <dependency>
                 <groupId>org.octo</groupId>
                 <artifactId>ScreeningSeatingArrangementSuggestions</artifactId>
                 <version>0.0.1-SNAPSHOT</version>
             </dependency>
-
             <dependency>
                 <groupId>org.octo</groupId>
                 <artifactId>ScreeningSeatingArrangementSuggestionsAcceptanceTests</artifactId>
                 <version>0.0.1-SNAPSHOT</version>
             </dependency>
-
             <dependency>
                 <groupId>org.octo</groupId>
                 <artifactId>ExternalDependencies</artifactId>
@@ -51,7 +44,6 @@
                 <artifactId>jackson-databind</artifactId>
                 <version>2.18.3</version>
             </dependency>
-
             <!-- TEST dependencies -->
             <dependency>
                 <groupId>org.junit.jupiter</groupId>
@@ -59,8 +51,6 @@
                 <version>5.12.2</version>
                 <scope>test</scope>
             </dependency>
-
-
             <dependency>
                 <groupId>org.assertj</groupId>
                 <artifactId>assertj-core</artifactId>
@@ -70,19 +60,16 @@
 
         </dependencies>
     </dependencyManagement>
-
     <build>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
-                    <source>23</source>
-                    <target>23</target>
+                    <source>25</source>
+                    <target>25</target>
                 </configuration>
             </plugin>
         </plugins>
     </build>
-
-
 </project>

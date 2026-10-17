@@ -29,7 +29,7 @@ public class RowTest {
 
     @Test
     public void
-    Offer_seating_places_from_the_middle_of_the_row_when_the_row_size_is_even_and_party_size_is_greater_than_one()
+    offer_seating_places_from_the_middle_of_the_row_when_the_row_size_is_even_and_party_size_is_greater_than_one()
     {
         var partySize = 2;
 
@@ -46,14 +46,14 @@ public class RowTest {
 
         var row = new Row("A", Arrays.asList(a1, a2, a3, a4, a5, a6, a7, a8, a9, a10));
 
-        var integers = MakeSeatingPlacesWithDistance(row).stream()
+        var integers = makeSeatingPlacesWithDistance(row).stream()
                 .map(SeatingPlaceWithDistance::DistanceFromTheMiddleOfTheRow)
                 .collect(toList());
 
         assertThat(integers)
                 .containsExactly(4, 3, 2, 1, 0, 0, 1, 2, 3, 4);
 
-        var seatingPlaces = OfferSeatsNearerTheMiddleOfTheRow(row)
+        var seatingPlaces = offerSeatsNearerTheMiddleOfTheRow(row)
                 .stream()
                 .sorted(Comparator.comparing(SeatingPlaceWithDistance::DistanceFromTheMiddleOfTheRow))
                 .map(SeatingPlaceWithDistance::SeatingPlace)
@@ -67,7 +67,7 @@ public class RowTest {
 
     @Test
     public void
-    Offer_seating_places_from_the_middle_of_the_row_when_the_row_size_is_odd_and_party_size_is_greater_than_one()
+    offer_seating_places_from_the_middle_of_the_row_when_the_row_size_is_odd_and_party_size_is_greater_than_one()
     {
         var partySize = 2;
 
@@ -83,14 +83,14 @@ public class RowTest {
 
         var row = new Row("A", Arrays.asList(a1, a2, a3, a4, a5, a6, a7, a8, a9));
 
-        var integers = MakeSeatingPlacesWithDistance(row).stream()
+        var integers = makeSeatingPlacesWithDistance(row).stream()
                 .map(SeatingPlaceWithDistance::DistanceFromTheMiddleOfTheRow)
                 .collect(toList());
 
         assertThat(integers)
                 .containsExactly(4, 3, 2, 1, 0, 1, 2, 3, 4);
 
-        var seatingPlaces = OfferSeatsNearerTheMiddleOfTheRow(row)
+        var seatingPlaces = offerSeatsNearerTheMiddleOfTheRow(row)
                 .stream()
                 .sorted(Comparator.comparing(SeatingPlaceWithDistance::DistanceFromTheMiddleOfTheRow))
                 .map(SeatingPlaceWithDistance::SeatingPlace)
@@ -103,7 +103,8 @@ public class RowTest {
     }
 
     @Test
-    public void Offer_seating_places_adjacent_of_the_row_when_the_row_size_is_even_and_party_size_is_greater_than_one()
+    public void
+    offer_seating_places_adjacent_of_the_row_when_the_row_size_is_even_and_party_size_is_greater_than_one()
     {
         var partySize = 2;
 
@@ -120,22 +121,23 @@ public class RowTest {
 
         var row = new Row("A", Arrays.asList(a1, a2, a3, a4, a5, a6, a7, a8, a9, a10));
 
-        var integers = MakeSeatingPlacesWithDistance(row).stream()
+        var integers = makeSeatingPlacesWithDistance(row).stream()
                 .map(SeatingPlaceWithDistance::DistanceFromTheMiddleOfTheRow)
                 .collect(toList());
 
         assertThat(integers)
                 .containsExactly(4, 3, 2, 1, 0, 0, 1, 2, 3, 4);
 
-        var seatingPlacesWithDistance = OfferSeatsNearerTheMiddleOfTheRow(row);
+        var seatingPlacesWithDistance = offerSeatsNearerTheMiddleOfTheRow(row);
 
-        var offerAdjacentSeatingPlaces = OfferAdjacentSeatingPlace(seatingPlacesWithDistance, partySize);
+        var offerAdjacentSeatingPlaces = offerAdjacentSeatingPlace(seatingPlacesWithDistance, partySize);
         assertThat(offerAdjacentSeatingPlaces)
                 .containsExactly(a5, a6);
     }
 
     // Start with a prototype
-    private List<SeatingPlace> OfferAdjacentSeatingPlace(List<SeatingPlaceWithDistance> seatingPlacesWithDistance, int partySize)
+    private List<SeatingPlace>
+    offerAdjacentSeatingPlace(List<SeatingPlaceWithDistance> seatingPlacesWithDistance, int partySize)
     {
         return new ArrayList<>();
     }
@@ -143,48 +145,48 @@ public class RowTest {
     // -----------------------------------------------
     // DeepModeling - Seats from the middle of the row
     // -----------------------------------------------
-    private static List<SeatingPlaceWithDistance> OfferSeatsNearerTheMiddleOfTheRow(Row row)
+    private static List<SeatingPlaceWithDistance> offerSeatsNearerTheMiddleOfTheRow(Row row)
     {
-        return MakeSeatingPlacesWithDistance(row);
+        return makeSeatingPlacesWithDistance(row);
     }
 
-    private static List<SeatingPlaceWithDistance> MakeSeatingPlacesWithDistance(Row row)
+    private static List<SeatingPlaceWithDistance> makeSeatingPlacesWithDistance(Row row)
     {
         // The middle of the row
         var middleOfTheRow = row.seatingPlaces().size() / 2;
         // Distance from the middle of the row
-        var seatingPlacesWithDistanceLeftPart = SeatingPlacesWithDistanceLeftPart(row, middleOfTheRow);
-        var seatingPlacesWithDistanceRightPart = SeatingPlacesWithDistanceRightPart(row, middleOfTheRow);
+        var seatingPlacesWithDistanceLeftPart = seatingPlacesWithDistanceLeftPart(row, middleOfTheRow);
+        var seatingPlacesWithDistanceRightPart = seatingPlacesWithDistanceRightPart(row, middleOfTheRow);
         return Stream.concat(seatingPlacesWithDistanceLeftPart.stream(), seatingPlacesWithDistanceRightPart.stream()).toList();
     }
 
-    private static List<SeatingPlaceWithDistance> SeatingPlacesWithDistanceRightPart(Row row, int middleOfTheRow)
+    private static List<SeatingPlaceWithDistance> seatingPlacesWithDistanceRightPart(Row row, int middleOfTheRow)
     {
         // Right part   A6:0, A7:1, A8:2, A9:3, A10:4
         var seatingPlacesWithDistanceRightPart = row.seatingPlaces()
                 .stream().skip(middleOfTheRow)
                 .map(seatingPlace -> new SeatingPlaceWithDistance(
                         seatingPlace,
-                        seatingPlace.number() - (middleOfTheRow + OffsetRightPart())));
+                        seatingPlace.number() - (middleOfTheRow + offsetRightPart())));
         return seatingPlacesWithDistanceRightPart.toList();
     }
 
-    private static List<SeatingPlaceWithDistance> SeatingPlacesWithDistanceLeftPart(Row row, int middleOfTheRow)
+    private static List<SeatingPlaceWithDistance> seatingPlacesWithDistanceLeftPart(Row row, int middleOfTheRow)
     {
         // Left part    A1:4, A2:3, A3:2, A4:1, A5:0,
         var seatingPlacesWithDistanceLeftPart = row.seatingPlaces()
                 .stream().limit(middleOfTheRow)
                 .map(seatingPlace -> new SeatingPlaceWithDistance(
                         seatingPlace, // 5 - (A1 + 1)
-                        (middleOfTheRow + OffsetLeftPartForRowSizeOdd(row)) - seatingPlace.number()));
+                        (middleOfTheRow + offsetLeftPartForRowSizeOdd(row)) - seatingPlace.number()));
         return seatingPlacesWithDistanceLeftPart.toList();
     }
 
-    private static int OffsetRightPart() {
+    private static int offsetRightPart() {
         return 1;
     }
 
-    private static int OffsetLeftPartForRowSizeOdd(Row row) {
+    private static int offsetLeftPartForRowSizeOdd(Row row) {
         return row.seatingPlaces().size() % 2 == 0 ? 0 : 1;
     }
 }
