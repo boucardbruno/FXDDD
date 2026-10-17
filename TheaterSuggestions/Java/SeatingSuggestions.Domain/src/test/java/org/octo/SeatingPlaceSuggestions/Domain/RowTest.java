@@ -22,6 +22,4 @@ public class RowTest {
         Row newRowWithNewSeatAdded = rowSecondInstance.addSeatingPlace(a3);
         assertThat(newRowWithNewSeatAdded).isNotEqualTo(rowFirstInstance);
     }
-
-
 }

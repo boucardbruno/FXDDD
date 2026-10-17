@@ -2,37 +2,24 @@
 <project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
     <parent>
         <groupId>org.octo</groupId>
         <artifactId>SeatingSuggestionsParent</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
-
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <java.version>23</java.version>
+        <java.version>25</java.version>
     </properties>
-
     <packaging>jar</packaging>
     <artifactId>Tests</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
     <name>SeatingSuggestions.Tests</name>
-
     <dependencies>
-
         <dependency>
             <groupId>org.octo</groupId>
             <artifactId>Domain</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
-
-        <dependency>
-            <groupId>org.octo</groupId>
-            <artifactId>Infra</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
-
         <!-- TEST dependencies -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
@@ -40,27 +27,23 @@
             <version>5.12.2</version>
             <scope>test</scope>
         </dependency>
-
         <dependency>
             <groupId>org.assertj</groupId>
             <artifactId>assertj-core</artifactId>
-            <version>3.24.2</version>
+            <version>3.27.7</version>
             <scope>test</scope>
         </dependency>
-
     </dependencies>
-
     <build>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
-                    <source>23</source>
-                    <target>23</target>
+                    <source>25</source>
+                    <target>25</target>
                 </configuration>
             </plugin>
         </plugins>
     </build>
-
 </project>
