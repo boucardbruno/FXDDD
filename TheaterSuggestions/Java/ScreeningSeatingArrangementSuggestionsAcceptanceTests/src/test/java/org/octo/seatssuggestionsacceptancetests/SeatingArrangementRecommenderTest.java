@@ -9,7 +9,7 @@ import java.io.IOException;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class SeatingArrangementRecommenderTest {/*
+public class SeatingArrangementRecommenderTest {/*
      *  Business Rule - Only Suggest available seats
      */
     @Test
