@@ -5,8 +5,11 @@
 /// </summary>
 public class SuggestionIsMade(SeatingOptionIsSuggested seatingOptionIsSuggested)
 {
+    public SuggestionIsMade():this(new SeatingOptionIsSuggested(new PartyRequested(1), PricingCategory.Ignored))
+    {
+    }
     private readonly List<SeatingPlace> _suggestedSeats = seatingOptionIsSuggested.Seats;
-
+    
     public PartyRequested PartyRequested { get; } = seatingOptionIsSuggested.PartyRequested;
     public PricingCategory PricingCategory { get; } = seatingOptionIsSuggested.PricingCategory;
 

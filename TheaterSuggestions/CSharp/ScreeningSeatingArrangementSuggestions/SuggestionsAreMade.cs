@@ -11,7 +11,7 @@ public class SuggestionsAreMade
         PartyRequested = partyRequested;
         InstantiateAnEmptyListForEveryPricingCategory();
     }
-
+    
     public ShowId ShowId { get; }
     public PartyRequested PartyRequested { get; }
 

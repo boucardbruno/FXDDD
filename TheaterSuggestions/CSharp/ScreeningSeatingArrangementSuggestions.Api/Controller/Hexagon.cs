@@ -15,8 +15,8 @@ public class Hexagon(AuditoriumSeatingArrangementAdapter auditoriumSeatingArrang
         // Infra => Domain
         var showId = new ShowId(id);
         var partyRequested = new PartyRequested(party);
-
-        var suggestionsAreMade = _seatingArrangementRecommender.MakeSuggestions(showId, partyRequested);
+        
+        SuggestionsAreMade suggestionsAreMade = _seatingArrangementRecommender.MakeSuggestions(showId, partyRequested);
 
         // Domain => Infra
         return JsonConvert.SerializeObject(suggestionsAreMade, Formatting.Indented);

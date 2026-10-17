@@ -1,4 +1,5 @@
-﻿using NFluent;
+﻿using Newtonsoft.Json;
+using NFluent;
 using NUnit.Framework;
 using SeatingArrangement.Api.Controller;
 using SeatingSuggestions.Infra.AuditoriumLayoutRepository;
@@ -62,15 +63,11 @@ public class SeatingArrangementRecommenderShould
         var showId = new ShowId("17");
         var partyRequested = new PartyRequested(2);
 
-        var auditoriumSeatingArrangements =
+        var hexagon = new Hexagon(
             new AuditoriumSeatingArrangementAdapter(new AuditoriumLayoutRepositoryAdapter(),
-                new ReservationsProviderAdapter());
-
-        var hexagon = new Hexagon(auditoriumSeatingArrangements);
-        var seatingArrangementRecommender = new SeatingArrangementRecommender(auditoriumSeatingArrangements);
-
-        var suggestionsAreMade = seatingArrangementRecommender.MakeSuggestions(showId, partyRequested);
-
+            new ReservationsProviderAdapter()));
+        var suggestionsAreMadeRaw = hexagon.MakeSuggestions(showId.Identifier, partyRequested.Party);
+        var suggestionsAreMade = JsonConvert.DeserializeObject<SuggestionsAreMade>(suggestionsAreMadeRaw);
         var seatNamesForFistCategory = suggestionsAreMade.SeatNames(PricingCategory.First);
         Check.That(seatNamesForFistCategory).ContainsExactly("A5", "A6", "A3", "A4", "A7", "A8");
         var seatNamesForSecondCategory = suggestionsAreMade.SeatNames(PricingCategory.Second);

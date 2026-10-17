@@ -13,7 +13,6 @@ public class AuditoriumSeatingArrangement(Dictionary<string, Row> rows) : ValueT
         foreach (var row in rows.Values)
         {
             var seatOptionsSuggested = row.SuggestSeatingOption(partyRequested, pricingCategory);
-
             if (seatOptionsSuggested.MatchExpectation()) return seatOptionsSuggested;
         }
 

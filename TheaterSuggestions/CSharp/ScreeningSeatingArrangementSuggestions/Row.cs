@@ -56,12 +56,14 @@ public class Row(string name, List<SeatingPlace> seatingPlaces) : ValueType<Row>
             return offerAdjacentSeatsNearerTheMiddleOfRow;
         }
 
-        return offerSeatsNearerTheMiddleOfTheRow
-            .OrderBy(s => s.DistanceFromTheMiddleOfTheRow)
-            .Select(s => s.SeatingPlace)
-            .Where(s => s.MatchCategory(pricingCategory))
-            .Where(s => s.IsAvailable())
-            .Take(partyRequested.Party)
-            .ToList();
+        return
+        [
+            .. offerSeatsNearerTheMiddleOfTheRow
+                .OrderBy(s => s.DistanceFromTheMiddleOfTheRow)
+                .Select(s => s.SeatingPlace)
+                .Where(s => s.MatchCategory(pricingCategory))
+                .Where(s => s.IsAvailable())
+                .Take(partyRequested.Party)
+        ];
     }
 }
